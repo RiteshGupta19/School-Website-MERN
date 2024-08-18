@@ -3,7 +3,7 @@ const Topperlistmodel = require("../model/topperlist");
 const topperlist = async (req, res, next) => {
   try {
     const { Name, Class, Year, Exam } = req.body;
-    const photo = req.file.path; // Get the path of the uploaded file
+    const photo = req.file.path; 
 
     await Topperlistmodel.create({ photo, Name, Class, year: Year, Exam });
 
@@ -42,9 +42,8 @@ const updateTopperlist = async (req, res, next) => {
   try {
       const id = req.params.id;
       const { Name, Class, Year, Exam } = req.body;
-      const photo = req.file ? req.file.path : null; // Get the path of the uploaded file if present
+      const photo = req.file ? req.file.path : null; 
 
-      // Find the topper and update details
       const updatedTopper = await Topperlistmodel.findByIdAndUpdate(
           id,
           { Name, Class, Year, Exam, photo },

@@ -14,6 +14,16 @@ const parentReviewRouter = require('./routers/parent-review-router');
 const path = require("path");
 const Topperlistmodel = require('./routers/admin-topperlist');
 
+
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
+
 const corsOption = {
   origin: "http://localhost:5173",
   methods: "GET,POST,PUT,DELETE,PATCH,HEAD",
@@ -45,4 +55,4 @@ connectdb().then(() => {
   });
 });
 
-module.exports = upload; // Export upload for use in routes
+module.exports = upload;

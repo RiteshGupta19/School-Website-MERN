@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../store/authcontext';
 import { Navigate } from 'react-router-dom';
 
-export default function Staff() {
+export default function Admintopperlist() {
     const [topper, setTopper] = useState({
         photo: "",
         Name: "",
@@ -41,8 +41,8 @@ export default function Staff() {
 
         try {
             const url = editMode
-                ? `http://localhost:5000/api/admin/topperlist/${currentTopperId}`  // Update endpoint
-                : 'http://localhost:5000/api/admin/topperlist';                 // Create endpoint
+                ? `http://localhost:5000/api/admin/topperlist/${currentTopperId}`  
+                : 'http://localhost:5000/api/admin/topperlist';             
             const method = editMode ? "PUT" : "POST";
             const response = await fetch(url, {
                 method: method,
@@ -191,7 +191,7 @@ export default function Staff() {
                         ))}
                     </tbody>
                 </table>
-            </div>
-        </div>
-    );
-}
+                </div>
+                </div>
+                );
+            }
