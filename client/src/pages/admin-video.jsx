@@ -43,6 +43,7 @@ export default function Video() {
       }
       )
         toast.success("Video added successfully")
+        getsvideo();
        }
        else{
         toast.error("not submitted");
@@ -96,7 +97,7 @@ export default function Video() {
   
 
   useEffect(() => {
-    getsvideo();
+    getsvideo()
   }, []);
   
   return (
@@ -128,15 +129,34 @@ export default function Video() {
               </tr>
             </thead>
             <tbody>
-            {getvideoo.map((v, i) => {
-                return<>
-                <tr key={i}>
-                  <td> {i + 1}</td>
-                  <td> <iframe width='100%' height='270px'  src={`${v.videourl}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  </td>
-                  <td><button onClick={() => deletevideo(v._id)} className='bg-red-700 text-white px-3 hover:bg-red-800 rounded-md'>Delete</button></td>
-                </tr>
-                </>
-            })} 
+            {Array.isArray(getvideoo) && getvideoo.length > 0 ? (
+  getvideoo.map((v, i) => (
+    <tr key={i}>
+      <td>{i + 1}</td>
+      <td>
+        <iframe
+          width="100%"
+          height="270px"
+          src={v.videourl}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+      </td>
+      <td>
+        <button onClick={() => deletevideo(v._id)} className="bg-red-700 text-white px-3 hover:bg-red-800 rounded-md">
+          Delete
+        </button>
+      </td>
+    </tr>
+  ))
+) : (
+  <tr>
+    <td colSpan="3">No videos available</td>
+  </tr>
+)}
+
             </tbody>
           </table>
         </div>

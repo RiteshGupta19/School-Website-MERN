@@ -29,10 +29,10 @@ import Adminlogin from './pages/admin-login.jsx';
 import Staff from './pages/admin-staff.jsx';
 import Gallary from './pages/admin-gallary.jsx';
 import Video from './pages/admin-video.jsx';
-import Admin_admission_list from './pages/admin-admission-list.jsx';
 import Videos from './pages/video.jsx';
 import VideoUploader from './pages/admin-parent-review.jsx';
 import Parent_review from './pages/parent_review.jsx';
+import Topperlist from './pages/admin-topper-list.jsx';
 
 
 
@@ -79,7 +79,7 @@ export default function App() {
               <Route path="gallary" element={<Gallary/>}/>
               <Route path="videos" element={<Video/>}/>
               <Route path="parent-review" element={<VideoUploader/>}/>
-              <Route path="admin-admission-list" element={<Admin_admission_list/>}/>
+              <Route path="topperlist" element={<Topperlist/>}/>
           </Route>
         </Routes>
         

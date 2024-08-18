@@ -32,7 +32,7 @@ export default function Admin_layout() {
             <div ><NavLink to='/admin/gallary' className=" hover:text-red-600"><MdOutlineImage   className='m-auto '/>Add Gallary</NavLink></div>
             <div ><NavLink to='/admin/videos' className=" hover:text-red-600"><MdOndemandVideo    className='m-auto '/>Add Videos</NavLink></div>
             <div ><NavLink to='/admin/parent-review' className=" hover:text-red-600"><MdOutlineVideoCameraFront className='m-auto '/>Add Parent-Reviews</NavLink></div>
-            {/* <div ><NavLink to='/admin/admin-admission-list' className=" hover:text-red-600"><MdOutlinePlaylistAddCheck className='m-auto '/>Topper List</NavLink></div> */}
+            <div ><NavLink to='/admin/topperlist' className=" hover:text-red-600"><MdOutlinePlaylistAddCheck className='m-auto '/>Topper List</NavLink></div>
           </div>
           
           <div className=' mt-1'>

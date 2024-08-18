@@ -128,7 +128,7 @@ export default function Gallary() {
         </form>
 
         <div className=' mt-10'>
-          <h1 className='text-[30px] font-bold mb-3 underline ml-3 '>Parent reviews Videos</h1>
+          <h1 className='text-[30px] font-bold mb-3 underline ml-3 '>Gallary Images</h1>
         </div>
         <div>
           <table className='w-full'>

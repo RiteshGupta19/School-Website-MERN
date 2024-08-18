@@ -24,7 +24,7 @@ export default function Header() {
       <div className=" hidden md:grid grid-cols-[60%,auto] bg-black text-white justify-around py-3  m-0 ">
         <div class="flex ">
           <FontAwesomeIcon icon={faEnvelope} className='mt-1' />
-          <p className="text-white ml-3 text-decoration-none ">susanskarvidyamandir@gmail.com</p>
+          <p className="text-white ml-3 text-decoration-none "><a href=' susanskarvidyamandir@gmail.com'>susanskarvidyamandir@gmail.com</a></p>
         </div>
         <div class="">
           <FontAwesomeIcon icon={faPhone} />
