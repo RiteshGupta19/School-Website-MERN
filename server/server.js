@@ -16,11 +16,6 @@ const Topperlistmodel = require('./routers/admin-topperlist');
 
 
 
-app.use(express.static(path.join(__dirname, 'client', 'build')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
 
 
 const corsOption = {
@@ -47,7 +42,7 @@ app.use("/api/admin", Topperlistmodel);
 
 app.use(errormiddleware);
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 connectdb().then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
