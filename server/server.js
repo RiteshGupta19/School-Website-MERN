@@ -16,12 +16,6 @@ const Topperlistmodel = require('./routers/admin-topperlist');
 
 
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-});
 
 
 const corsOption = {
@@ -48,7 +42,7 @@ app.use("/api/admin", Topperlistmodel);
 
 app.use(errormiddleware);
 
-const PORT = process.env.PORT || 5000;
+const PORT =  5000;
 connectdb().then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
