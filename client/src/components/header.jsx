@@ -117,9 +117,9 @@ function Nav({gall,gallary,admi,admission}){
               </div>
             </div>  
 
-            <Link to="/parent_review"><li class="hover:text-orange-500 duration-300 cursor-pointer">
+            {/* <Link to="/parent_review"><li class="hover:text-orange-500 duration-300 cursor-pointer">
               PARENT REVIEW
-            </li></Link> 
+            </li></Link>  */}
             <Link to="/contact"><li class="hover:text-orange-500 duration-300 cursor-pointer">
               CONTACT US
             </li></Link>
