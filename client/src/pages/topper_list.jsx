@@ -9,7 +9,7 @@ export default function TopperList() {
     
     const fetchTopperData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/admin/gettopperlist');
+        const response = await fetch('http://localhost:5001/api/admin/gettopperlist');
         if (response.ok) {
           const data = await response.json();
           setToppers(data); 
@@ -43,7 +43,7 @@ export default function TopperList() {
           {toppers.map((topper, index) => (
             <div key={index} className='border p-5 rounded-lg shadow-lg'>
               <img
-                src={`http://localhost:5000/${topper.photo}`}
+                src={`http://localhost:5001/${topper.photo}`}
                 alt={topper.Name}
                 className='w-full h-48 object-cover rounded-lg mb-4'
               />

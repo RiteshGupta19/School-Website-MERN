@@ -24,7 +24,7 @@ export default function Video() {
     const formData = new FormData();
     formData.append('videourl', video.videourl);
     try {
-      const response = await fetch('http://localhost:5000/api/admin/videos',{
+      const response = await fetch('http://localhost:5001/api/admin/videos',{
         method:"POST",
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export default function Video() {
 
   const getsvideo = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/getvideos", {
+      const response = await fetch("http://localhost:5001/api/admin/getvideos", {
         method: "GET",
       });
       const data = await response.json();
@@ -80,7 +80,7 @@ export default function Video() {
 
   const deletevideo = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/getvideos/delete/${id}`, {
+      const response = await fetch(`http://localhost:5001/api/admin/getvideos/delete/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {

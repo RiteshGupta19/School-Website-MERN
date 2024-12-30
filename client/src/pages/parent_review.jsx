@@ -9,7 +9,7 @@ export default function Parent_review() {
 
     const getvideourl = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/admin/upload", {
+        const response = await fetch("http://localhost:5001/api/admin/upload", {
           method: "GET",
         });
         const data = await response.json();

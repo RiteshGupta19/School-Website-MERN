@@ -42,7 +42,7 @@ app.use("/api/admin", Topperlistmodel);
 
 app.use(errormiddleware);
 
-const PORT =  5000;
+const PORT =  5001;
 connectdb().then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);

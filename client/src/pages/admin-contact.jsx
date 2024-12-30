@@ -13,7 +13,7 @@ export default function Admin_contact() {
 
   const getContactData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/contacts", {
+      const response = await fetch("http://localhost:5001/api/admin/contacts", {
         method: "GET",
       });
       const data = await response.json();
@@ -26,7 +26,7 @@ export default function Admin_contact() {
 
   const deleteContact = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/contacts/delete/${id}`, {
+      const response = await fetch(`http://localhost:5001/api/admin/contacts/delete/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
