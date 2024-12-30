@@ -10,7 +10,7 @@ const VideoUploader = () => {
     
         const fetchVideos = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/admin/upload', {
+                const response = await fetch('http://localhost:5001/api/admin/upload', {
                   method: "GET",
                 });
                 const data = await response.json();
@@ -34,7 +34,7 @@ const VideoUploader = () => {
         formData.append('video', videoFile);
 
         try {
-            const response = await fetch('http://localhost:5000/api/admin/upload', {
+            const response = await fetch('http://localhost:5001/api/admin/upload', {
                 method: 'POST',
                 body: formData,
             });
@@ -55,7 +55,7 @@ const VideoUploader = () => {
 
     const deletevideo = async (id) => {
         try {
-          const response = await fetch(`http://localhost:5000/api/admin/upload/delete/${id}`, {
+          const response = await fetch(`http://localhost:5001/api/admin/upload/delete/${id}`, {
             method: "DELETE",
           });
           if (response.ok) {

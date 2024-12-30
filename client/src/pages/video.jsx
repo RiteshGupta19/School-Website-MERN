@@ -7,7 +7,7 @@ export default function Videos() {
 
     const getvideourl = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/admin/getvideos", {
+        const response = await fetch("http://localhost:5001/api/admin/getvideos", {
           method: "GET",
         });
         const data = await response.json();

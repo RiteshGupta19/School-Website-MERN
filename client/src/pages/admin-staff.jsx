@@ -29,7 +29,7 @@ export default function Staff() {
     formData.append('name', staff.name);
     formData.append('post', staff.post);
     try {
-      const response = await fetch('http://localhost:5000/api/admin/staff',{
+      const response = await fetch('http://localhost:5001/api/admin/staff',{
         method:"POST",
         body: formData,
       });
@@ -71,7 +71,7 @@ export default function Staff() {
 
   const getstaffData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/getstaff", {
+      const response = await fetch("http://localhost:5001/api/admin/getstaff", {
         method: "GET",
       });
       const data = await response.json();
@@ -84,7 +84,7 @@ export default function Staff() {
 
   const deletestaff = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/getstaff/delete/${id}`, {
+      const response = await fetch(`http://localhost:5001/api/admin/getstaff/delete/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -139,7 +139,7 @@ export default function Staff() {
             {getstafff.map((v, i) => (
 
                 <tr key={i}>
-                  <td><img src={`http://localhost:5000/${v.photo}`} alt={v.name} style={{ width: '100px' }} /></td>
+                  <td><img src={`http://localhost:5001/${v.photo}`} alt={v.name} style={{ width: '100px' }} /></td>
                   {/* <td className=' '>{v.description}</td> */}
                   <td>{v.name}</td>
                   <td>{v.post}</td>
