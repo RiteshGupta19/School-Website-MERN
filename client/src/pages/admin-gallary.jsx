@@ -5,6 +5,7 @@ export default function Gallary() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [category, setCategory] = useState('');
   const [images, setImages] = useState([]);
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -27,7 +28,7 @@ export default function Gallary() {
       formData.append('photo', selectedFile);
       formData.append('category', category);
 
-      const response = await fetch('http://localhost:5001/api/admin/gallary', {
+      const response = await fetch(`${baseURL}/api/admin/gallary`, {
         method: 'POST',
         body: formData,
       });
@@ -55,7 +56,7 @@ export default function Gallary() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/gallary/${category}`);
+      const response = await fetch(`${baseURL}/api/admin/gallary/${category}`);
       if (!response.ok) {
         throw new Error('Failed to fetch images.');
       }
@@ -71,7 +72,7 @@ export default function Gallary() {
 
   const deleteimage = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/gallary/delete/${id}`, {
+      const response = await fetch(`${baseURL}/api/admin/gallary/delete/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -143,7 +144,7 @@ export default function Gallary() {
           {images.map((image, index) => (
             <tr key={index}>
               <td> {index + 1}</td>
-              <td><img key={index} src={`http://localhost:5001/${image.imagePath}`} alt='Gallery' className='h-[220px] w-[100%]' /></td>
+              <td><img key={index} src={`${baseURL}/${image.imagePath}`} alt='Gallery' className='h-[220px] w-[100%]' /></td>
               <td><button onClick={() => deleteimage(image._id)} className='bg-red-700 text-white px-3 hover:bg-red-800 rounded-md'>Delete</button></td>
             </tr>
           ))}

@@ -6,10 +6,11 @@ import ReactPlayer from 'react-player'
 
 export default function Parent_review() {
   const [videos, setVideos] = useState([]);
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
 
     const getvideourl = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/admin/upload", {
+        const response = await fetch(`${baseURL}/api/admin/upload`, {
           method: "GET",
         });
         const data = await response.json();

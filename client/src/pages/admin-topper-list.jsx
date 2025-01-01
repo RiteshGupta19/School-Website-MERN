@@ -11,6 +11,7 @@ export default function Admintopperlist() {
         Year: "",
         Exam: "",
     });
+    const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
 
     const [topperList, setTopperList] = useState([]);
     const [editMode, setEditMode] = useState(false);
@@ -41,8 +42,8 @@ export default function Admintopperlist() {
 
         try {
             const url = editMode
-                ? `http://localhost:5001/api/admin/topperlist/${currentTopperId}`  
-                : 'http://localhost:5001/api/admin/topperlist';             
+                ? `${baseURL}/api/admin/topperlist/${currentTopperId}`  
+                : `${baseURL}/api/admin/topperlist`;             
             const method = editMode ? "PUT" : "POST";
             const response = await fetch(url, {
                 method: method,
@@ -73,7 +74,7 @@ export default function Admintopperlist() {
 
     const fetchTopperData = async () => {
         try {
-            const response = await fetch("http://localhost:5001/api/admin/gettopperlist", {
+            const response = await fetch(`${baseURL}/api/admin/gettopperlist`, {
                 method: "GET",
             });
             const data = await response.json();
@@ -92,7 +93,7 @@ export default function Admintopperlist() {
 
     const deleteTopper = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5001/api/admin/gettopperlist/delete/${id}`, {
+            const response = await fetch(`${baseURL}/api/admin/gettopperlist/delete/${id}`, {
                 method: "DELETE",
             });
             if (response.ok) {
@@ -162,7 +163,7 @@ export default function Admintopperlist() {
                             <tr key={topper._id}>
                                 <td>
                                     <img
-                                        src={`http://localhost:5001/${topper.photo}`}
+                                        src={`${baseURL}/${topper.photo}`}
                                         alt={topper.Name}
                                         className='w-16 h-16 object-cover'
                                     />

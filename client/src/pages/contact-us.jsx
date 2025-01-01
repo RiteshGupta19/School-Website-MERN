@@ -8,6 +8,8 @@ import { faLocationDot,faMobileScreen,faChevronRight } from '@fortawesome/free-s
 import { toast } from 'react-toastify'
 export default function Contact_us() {
 
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
+
   const [user,setuser]=useState({
     name:"",
     email:"",
@@ -27,7 +29,7 @@ export default function Contact_us() {
     e.preventDefault();
     console.log(user)
     try {
-      const response = await fetch('http://localhost:5001/api/user/contact',{
+      const response = await fetch(`${baseURL}/api/user/contact`,{
         method:"POST",
         headers:{
           'Content-Type':"application/json"

@@ -6,6 +6,7 @@ import { AuthContext } from '../store/authcontext';
 export default function Admin_contact() {
   const [contacts, setContacts] = useState([]);
   const { logged } = useContext(AuthContext);
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
 
   if (!logged) {
     return <Navigate to="/login" />;
@@ -13,7 +14,7 @@ export default function Admin_contact() {
 
   const getContactData = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/admin/contacts", {
+      const response = await fetch(`${baseURL}/api/admin/contacts`, {
         method: "GET",
       });
       const data = await response.json();
@@ -26,7 +27,7 @@ export default function Admin_contact() {
 
   const deleteContact = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/contacts/delete/${id}`, {
+      const response = await fetch(`${baseURL}/api/admin/contacts/delete/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {

@@ -19,10 +19,15 @@ const Topperlistmodel = require('./routers/admin-topperlist');
 
 
 const corsOption = {
-  origin: "http://localhost:5173",
+  origin: "http://35.200.236.161", 
+  // origin: "http://localhost:5173",
   methods: "GET,POST,PUT,DELETE,PATCH,HEAD",
   credentials: true,
 };
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the backend server!");
+});
 
 app.use(cors(corsOption));
 app.use(express.json());
