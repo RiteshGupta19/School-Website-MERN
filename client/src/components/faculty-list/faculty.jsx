@@ -4,10 +4,10 @@ import React, { useEffect, useState} from 'react';
 export default function Faculty() {
     //staff
     const [getstafff, setstafff] = useState([]);
-
+    const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
     const getstaffData = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/admin/getstaff", {
+        const response = await fetch(`${baseURL}/api/admin/getstaff`, {
           method: "GET",
         });
         const data = await response.json();
@@ -29,7 +29,7 @@ export default function Faculty() {
         return(
       <div class="sm:mx-4 md:mx-0 grid md:grid-cols-[35%,auto] justify-between mb-5 pt-4">
           <div class=" text-center md:w-[70%]  pt-4">
-             <img src={`http://localhost:5001/${v.photo}`} alt="" class="h-[240px] w-[100%]  img-fluid border border-3 border-black "/>
+             <img src={`${baseURL}/${v.photo}`} alt="" class="h-[240px] w-[100%]  img-fluid border border-3 border-black "/>
           </div>
           <div class=" mt-3">          
              <p class="mb-3 sm:text-[16px]"> {v.description}</p>

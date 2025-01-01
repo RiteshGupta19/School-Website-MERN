@@ -4,10 +4,11 @@ import Contact from '../components/contact'
 
 export default function Videos() {
   const [video, setvideo] = useState([]);
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
 
     const getvideourl = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/admin/getvideos", {
+        const response = await fetch(`${baseURL}/api/admin/getvideos`, {
           method: "GET",
         });
         const data = await response.json();

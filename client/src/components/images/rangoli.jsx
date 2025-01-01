@@ -4,11 +4,12 @@ import Contact from '../contact.jsx'
 
 export default function Rangoli() {
   const [images, setImages] = useState([]);
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/admin/gallary/rangoli');
+        const response = await fetch(`${baseURL}/api/admin/gallary/rangoli`);
         console.log(response);
 
         if (!response.ok) {
@@ -30,7 +31,7 @@ export default function Rangoli() {
       <div className='text-[30px] font-bold text-center mt-5'>RANGOLI COMPETATION</div>
       <div className='grid  md:grid-cols-3 sm:grid-cols-2 p-5  max-w-[1100px] gap-8 m-auto py-[70px]'>
       {images.map((image, index) => (
-        <img key={index} src={`http://localhost:5000/${image.imagePath}`} alt='xx' className='h-[220px] w-[100%]' />
+        <img key={index} src={`${baseURL}/${image.imagePath}`} alt='xx' className='h-[220px] w-[100%]' />
       ))}
       </div>
       <Contact/>
