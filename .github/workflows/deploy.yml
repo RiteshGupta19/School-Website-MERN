@@ -24,7 +24,7 @@ jobs:
         cd frontend/server && npm install
 
     - name: Build Frontend
-      run: |
+      run: | 
         cd frontend/client
         npm run build  # Build the frontend assets
 
