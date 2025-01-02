@@ -1,0 +1,58 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # This triggers the pipeline when pushing to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Runner for the GitHub Actions workflow
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'  # Use Node.js version 20.x
+
+    - name: Install Dependencies
+      run: |
+        cd frontend/client && npm install  # Install frontend dependencies
+        cd ../server && npm install  # Install backend dependencies
+
+    - name: Build Frontend
+      run: |
+        cd frontend/client
+        npm run build  # Build the frontend assets
+
+    - name: Deploy to Server
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SERVER_IP: ${{ secrets.SERVER_IP }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts  # Add server IP to known hosts
+        
+        # Deploy Frontend
+        scp -r frontend/client/dist/ riteshgupta0968@$SERVER_IP:/home/riteshgupta0968/frontend/client/dist
+
+        # Deploy Backend
+        scp -r frontend/server/ riteshgupta0968@$SERVER_IP:/home/riteshgupta0968/frontend/server
+
+        # Restart Backend using PM2
+        ssh riteshgupta0968@$SERVER_IP << EOF
+          cd /home/riteshgupta0968/frontend/server
+          npm install  # Install dependencies on the server
+          pm2 restart server.js  # Restart backend with PM2
+        EOF
+
+    - name: Reload Nginx
+      env:
+        SERVER_IP: ${{ secrets.SERVER_IP }}
+      run: |
+        ssh riteshgupta0968@$SERVER_IP "sudo systemctl restart nginx"  # Restart Nginx to serve the new build
