@@ -20,8 +20,8 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        cd frontend/client && npm install
-        cd frontend/server && npm install
+        cd client && npm install
+        cd ../server && npm install
 
     - name: Build Frontend
       run: | 
