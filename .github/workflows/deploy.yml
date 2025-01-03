@@ -31,11 +31,16 @@ jobs:
         run: npm install
 
       - name: Deploy to server (via SSH)
-        
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
         run: |
-           
-           ssh -i $SSH_PRIVATE_KEY $SERVER_IP << 'EOF'
-           
+          # Save the private key to a file
+          echo "$SSH_PRIVATE_KEY" > private_key
+          chmod 600 private_key
+
+          # SSH into the server and run the commands
+          ssh -i private_key -o StrictHostKeyChecking=no riteshgupta0968@$SERVER_IP << 'EOF'
             # Navigate to the server directory
             cd /home/riteshgupta0968/susanskar/server  # Absolute path for server
 
@@ -57,5 +62,7 @@ jobs:
             # Optionally restart NGINX if there were frontend changes
             sudo nginx -t
             sudo systemctl restart nginx
-           EOF
+          EOF
 
+          # Clean up the private key file
+          rm -f private_key
