@@ -58,7 +58,7 @@ function Nav({gall,gallary,admi,admission}){
   return(
     <ul class=" md:flex gap-5 sm:text-[18px] md:mt-6  bg-red-100 md:bg-transparent">
             <li class="   hover:text-orange-500 duration-300 cursor-pointer">
-            <Link to="/">HOME</Link>
+            <Link to="/">HOMEEE</Link>
             </li>
             <li class= "  hover:text-orange-500 duration-300 cursor-pointer">
             <Link to="/about">ABOUT</Link>
