@@ -32,7 +32,7 @@ export default function Latest() {
       <div className='text-[30px] font-bold text-center mt-5'>LATEST PHOTOS</div>
       <div className='grid md:grid-cols-3 sm:grid-cols-2 p-5  max-w-[1100px]  gap-8 m-auto py-[70px]'>
       {images.map((image, index) => (
-        <img key={index} src={`${baseURL}/${image.imagePath}`}  alt='xx' className='h-[220px] w-[100%]' />
+        <img key={index} src={`${image.imagePath}`}  alt='xx' className='h-[220px] w-[100%]' />
       ))}
       </div>
       <Contact/>

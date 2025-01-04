@@ -61,7 +61,6 @@ export default function Gallary() {
         throw new Error('Failed to fetch images.');
       }
       const data = await response.json();
-      console.log(data);
       setImages(data);
     } catch (error) {
       console.error('Error fetching images:', error.message);
@@ -82,7 +81,7 @@ export default function Gallary() {
         toast.error("Not deleted");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -144,7 +143,7 @@ export default function Gallary() {
           {images.map((image, index) => (
             <tr key={index}>
               <td> {index + 1}</td>
-              <td><img key={index} src={`${baseURL}/${image.imagePath}`} alt='Gallery' className='h-[220px] w-[100%]' /></td>
+              <td><img key={index} src={`${image.imagePath}`} alt='Gallery' className='h-[220px] w-[100%]' /></td>
               <td><button onClick={() => deleteimage(image._id)} className='bg-red-700 text-white px-3 hover:bg-red-800 rounded-md'>Delete</button></td>
             </tr>
           ))}

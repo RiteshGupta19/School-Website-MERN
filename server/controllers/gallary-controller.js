@@ -1,16 +1,17 @@
 const Gallary = require('../model/gallary-model');
 
+
 const uploadImage = async (req, res) => {
   try {
     const { category } = req.body;
-    const imagePath = req.file.path.replace(/\\/g, "/"); // Replace backslashes with forward slashes
+    const imageUrl = req.file.cloudStoragePublicUrl;
 
-    const newImage = new Gallary({ imagePath, category });
+    const newImage = new Gallary({ imagePath: imageUrl, category });
     await newImage.save();
 
-    res.status(201).json({ message: 'Image uploaded successfully' });
+    res.status(201).json({ message: 'Image uploaded successfully', imageUrl });
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal Server Error', error });
   }
 };
 
@@ -36,7 +37,6 @@ const deleteimagebyid=async(req,res,next)=>{
     res.status(200).json({msg:"Image deleted"})
   } catch(error){
     next(error);
-    console.log({msg:"not delete"});
   }
 }
 
