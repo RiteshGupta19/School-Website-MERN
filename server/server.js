@@ -14,10 +14,72 @@ const parentReviewRouter = require('./routers/parent-review-router');
 const path = require("path");
 const Topperlistmodel = require('./routers/admin-topperlist');
 
+
+
+
+//Imports the Google Cloud client library
+const {Storage} = require('@google-cloud/storage');
+
+const keyFilename = path.join(__dirname, './coastal-walker-441512-n0-e2d9d93089be.json');
+// Creates a client
+const storage = new Storage({ keyFilename });
+
+async function getBucketMetadata() {
+
+  const bucketName = 'susanskar_bucket19';
+
+  // Get Bucket Metadata
+  const [metadata] = await storage.bucket(bucketName).getMetadata();
+
+  console.log(JSON.stringify(metadata, null, 2));
+}
+
+getBucketMetadata()
+
+//gcp cors setup
+const bucketName = 'susanskar_bucket19';
+
+const origin = 'http://localhost:5001';
+
+const responseHeader = 'Content-Type';
+
+const maxAgeSeconds = 3600;
+
+const method = 'GET';
+
+async function configureBucketCors() {
+    await storage.bucket(bucketName).setCorsConfiguration([
+      {
+        maxAgeSeconds,
+        method: [method],
+        origin: [origin],
+        responseHeader: [responseHeader],
+      },
+    ]);
+  
+    console.log(`Bucket ${bucketName} was updated with a CORS config
+        to allow ${method} requests from ${origin} sharing 
+        ${responseHeader} responses across origins`);
+  }
+  
+configureBucketCors().catch(console.error);
+//gcp cors setup end
+
+
+
+
+
+
+
+
+
+
+
+
 // Adjust CORS to allow localhost origin for development
 const allowedOrigins = [
-  // "http://localhost:5173",   // Allow localhost for development
-  "http://35.200.236.161"    // For production (remove if not needed)
+  "http://localhost:5173",   // Allow localhost for development
+  // "http://35.200.236.161"    // For production (remove if not needed)
 ];
 
 const corsOptions = {
