@@ -39,7 +39,7 @@ getBucketMetadata()
 //gcp cors setup
 const bucketName = 'susanskar_bucket19';
 
-const origin = 'http://localhost:5001';
+const origin = 'http://localhost:5173';
 
 const responseHeader = 'Content-Type';
 
@@ -79,7 +79,7 @@ configureBucketCors().catch(console.error);
 // Adjust CORS to allow localhost origin for development
 const allowedOrigins = [
   // "http://localhost:5173",   // Allow localhost for development
-  "http://35.200.236.161"    // For production (remove if not needed)
+  "http://35.200.236.161"     // For production (remove if not needed)
 ];
 
 const corsOptions = {
