@@ -20,13 +20,18 @@ const Topperlistmodel = require('./routers/admin-topperlist');
 //Imports the Google Cloud client library
 const {Storage} = require('@google-cloud/storage');
 
-const keyFilename = path.join(__dirname, './coastal-walker-441512-n0-e2d9d93089be.json');
+if (!process.env.GOOGLE_APPLICATION_CREDENTIALS || !process.env.GCS_BUCKET_NAME) {
+  throw new Error("Google Cloud Storage credentials or bucket name is not set in environment variables.");
+}
+
+
+const keyFilename = path.resolve(__dirname, process.env.GOOGLE_APPLICATION_CREDENTIALS);
 // Creates a client
 const storage = new Storage({ keyFilename });
 
 async function getBucketMetadata() {
 
-  const bucketName = 'susanskar_bucket19';
+  const bucketName = `${process.env.GCS_BUCKET_NAME}`;
 
   // Get Bucket Metadata
   const [metadata] = await storage.bucket(bucketName).getMetadata();
@@ -37,7 +42,7 @@ async function getBucketMetadata() {
 getBucketMetadata()
 
 // gcp cors setup
-const bucketName = 'susanskar_bucket19';
+const bucketName = `${process.env.GCS_BUCKET_NAME}`;
 
 const origin = 'http://localhost:5001';
 
