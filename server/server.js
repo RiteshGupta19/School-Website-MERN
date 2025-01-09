@@ -19,8 +19,8 @@ const Topperlistmodel = require('./routers/admin-topperlist');
 
 // Adjust CORS to allow localhost origin for development
 const allowedOrigins = [
-  // "http://localhost:5173",   // Allow localhost for development
-  "http://35.200.236.161"    // For production (remove if not needed)
+  "http://localhost:5173",   // Allow localhost for development
+  // "http://35.200.236.161"    // For production (remove if not needed)
 ];
 
 const corsOptions = {
