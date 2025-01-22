@@ -19,22 +19,21 @@ jobs:
           node-version: '14'
 
       - name: Install frontend dependencies
-        working-directory: ./client
+        working-directory: ./client  # Navigate to the client directory
         run: npm install
 
       - name: Build frontend
-        working-directory: ./client
+        working-directory: ./client  # Build the frontend in the client directory
         run: npm run build
 
       - name: Install backend dependencies
-        working-directory: ./server
+        working-directory: ./server  # Navigate to the server directory
         run: npm install
 
       - name: Deploy to server (via SSH)
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
-          GCP_KEY: ${{ secrets.GCP_KEY }}
         run: |
           # Save the private key to a file
           echo "$SSH_PRIVATE_KEY" > private_key
@@ -43,26 +42,19 @@ jobs:
           # SSH into the server and run the commands
           ssh -i private_key -o StrictHostKeyChecking=no riteshgupta0968@$SERVER_IP << 'EOF'
             # Navigate to the server directory
-            cd /home/riteshgupta0968/susanskar/server
+            cd /home/riteshgupta0968/susanskar/server  # Absolute path for server
 
             # Pull latest changes from the repo
             git pull
-
+            
             # Install server dependencies
             npm install
-
-            # Write the GCP_KEY secret to a gcp-key.json file
-            echo "$GCP_KEY" > gcp-key.json
-            chmod 600 gcp-key.json
-
-            # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable
-            export GOOGLE_APPLICATION_CREDENTIALS=$(pwd)/gcp-key.json
 
             # Restart PM2 processes
             pm2 restart all
             
             # Navigate to the client directory
-            cd /home/riteshgupta0968/susanskar/client
+            cd /home/riteshgupta0968/susanskar/client  # Absolute path for client
 
             # Build frontend if necessary (if not already done in CI/CD)
             npm run build
