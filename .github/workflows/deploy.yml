@@ -66,3 +66,4 @@ jobs:
 
           # Clean up the private key file
           rm -f private_key
+
