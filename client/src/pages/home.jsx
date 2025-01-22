@@ -55,7 +55,7 @@ function Home() {
         <div class=" my-3">
           <FontAwesomeIcon icon={faPerson} className='text-yellow-400 sm:text-[34px]' />
           <h1 className='sm:text-[33px] text-pink-400'>{isInView && <CountUp end={429} duration={2} />}</h1>
-          <h3>STUDENTS</h3>
+          <h3>STUDENTSSS</h3>
         </div>
       </div>
 
