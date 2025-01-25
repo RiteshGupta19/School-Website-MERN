@@ -12,7 +12,7 @@ export default function About() {
      <div className="bg-[url('aboutimg.jpg')] h-[50%] bg-no-repeat bg-cover mix-blend-multiply right-[0px] opacity-50   w-[46%] absolute -z-50"></div>
       <Header/>
         <div class="max-w-[1100px] m-auto ">
-            <p class=" text-[17px] mt-[45px]">Susanskar has been established in 2002 with the intention of cultivating different kinds of skills and capabilities among the creative kids. It’s major work is to search out the proper intinct and mould versatility in the most attractive manner.
+            <p class=" text-[17px] mt-[45px]">SSSusanskar has been established in 2002 with the intention of cultivating different kinds of skills and capabilities among the creative kids. It’s major work is to search out the proper intinct and mould versatility in the most attractive manner.
             <br/>
             <br/>
             This is an effort to provide the best to the fertile brain, believing as you sow, so shall you reap. The child’s caliber is nourished to promote a natural and lasting growth rather than the methods which only produce momentary result and eye-impressions.
